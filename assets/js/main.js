@@ -37,56 +37,92 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Show success message after form submission
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-        const successMessage = document.createElement('div');
-        successMessage.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 10000;
-            animation: slideIn 0.3s ease-out;
-        `;
-        successMessage.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-check-circle" style="font-size: 24px;"></i>
-                <div>
-                    <strong>Thank you!</strong><br>
-                    <span style="font-size: 14px;">Your message has been sent successfully.</span>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(successMessage);
-
-        // Add animation keyframes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(400px);
-                    opacity: 0;
+    // Handle form submissions
+    document.querySelectorAll('.contact-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Submit to FormSubmit
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    const successDiv = document.createElement('div');
+                    successDiv.style.cssText = `
+                        background-color: #d4edda;
+                        border: 1px solid #c3e6cb;
+                        color: #155724;
+                        padding: 20px;
+                        border-radius: 8px;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        animation: fadeIn 0.5s ease-out;
+                    `;
+                    successDiv.innerHTML = `
+                        <i class="fas fa-check-circle" style="font-size: 32px; color: #28a745; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 10px 0; color: #155724;">Thank You!</h4>
+                        <p style="margin: 0; color: #155724;">Your message has been sent successfully. We'll get back to you soon.</p>
+                    `;
+                    
+                    // Replace form with success message
+                    this.style.display = 'none';
+                    this.parentElement.insertBefore(successDiv, this);
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Show form again after 5 seconds
+                    setTimeout(() => {
+                        successDiv.remove();
+                        this.style.display = 'block';
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
                 }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Remove success message after 5 seconds
-        setTimeout(() => {
-            successMessage.style.animation = 'slideIn 0.3s ease-out reverse';
-            setTimeout(() => successMessage.remove(), 300);
-        }, 5000);
-
-        // Clean URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
+            })
+            .catch(error => {
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.style.cssText = `
+                    background-color: #f8d7da;
+                    border: 1px solid #f5c6cb;
+                    color: #721c24;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin-bottom: 15px;
+                    text-align: center;
+                `;
+                errorDiv.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i> 
+                    Something went wrong. Please try again or call us directly.
+                `;
+                this.parentElement.insertBefore(errorDiv, this);
+                
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+                
+                // Remove error message after 5 seconds
+                setTimeout(() => errorDiv.remove(), 5000);
+            });
+        });
+    });
 });

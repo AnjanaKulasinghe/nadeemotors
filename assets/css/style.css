@@ -675,7 +675,7 @@ h6 {
     }
 
     .hero {
-        padding: 50px 0 50px;
+        padding: 50px 0 80px;
     }
 
     .hero-grid {
@@ -689,6 +689,10 @@ h6 {
 
     .hero-image {
         display: none;
+    }
+    
+    .hero .btn {
+        margin-bottom: 20px;
     }
 
     .quick-actions {
@@ -726,11 +730,15 @@ h6 {
     }
 
     .hero {
-        padding: 40px 0 40px;
+        padding: 40px 0 70px;
     }
 
     .hero h1 {
         font-size: 28px;
+    }
+    
+    .hero .btn {
+        margin-bottom: 20px;
     }
 
     .quick-actions {

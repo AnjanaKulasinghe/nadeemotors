@@ -7,7 +7,7 @@
     <meta name="description"
         content="Nadee Motors - Expert motor repair, maintenance, and specialized hybrid services in New Zealand">
     <title>Nadee Motors - Quality Auto Repair & Service</title>
-    <link rel="icon" type="image/x-icon" href="images/logo.ico">
+    <link rel="icon" type="image/x-icon" href="images/favcon.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +17,11 @@
 </head>
 
 <body>
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
+
     <!-- Header -->
     <header class="site-header">
         <div class="container">
@@ -85,9 +90,8 @@
                     </div>
                     <h3>Working Hours</h3>
                     <ul class="hours-list">
-                        <li><i class="fas fa-check"></i> Week Days: 09:00 – 20:00</li>
-                        <li><i class="fas fa-check"></i> Saturday: 09:00 – 20:00</li>
-                        <li><i class="fas fa-check"></i> Sunday: 09:00 – 20:00</li>
+                        <li><i class="fas fa-check"></i> 7 Days: 9:00am – 8:00pm</li>
+                        <li><i class="fas fa-x"></i> Public holidays: Closed</li>
                     </ul>
                 </div>
 
@@ -174,7 +178,7 @@
                             </div>
                             <div class="feature-content">
                                 <h6>Expert Engineers</h6>
-                                <p>Precision meets proficiency with our expert engineers—masters of automotive
+                                <p>Precision meets proficiency with our expert engineers masters of automotive
                                     excellence.</p>
                             </div>
                         </div>
@@ -207,25 +211,26 @@
                             </div>
                             <div class="feature-content">
                                 <h6>Trusted Work</h6>
-                                <p>Count on us for trusted automotive work—where reliability and integrity come
+                                <p>Count on us for trusted automotive work where reliability and integrity come
                                     standard.</p>
                             </div>
                         </div>
                     </div>
+
+                    <a href="contact.html" class="btn btn-secondary" style="display: inline-block; margin-top: 30px;">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
                 </div>
 
                 <div class="form-col">
-                    <h4>Request Call Back</h4>
-                    <form class="contact-form" action="https://formsubmit.co/anjana.kulasinghe@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="New Call Back Request - Nadee Motors">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="tel" name="phone" placeholder="Contact Number" required>
-                        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-                        <button type="submit" class="btn btn-primary">Send Request</button>
-                    </form>
+                    <div class="fb-container">
+                        <iframe
+                            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61554764385378&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                            width="500" height="600" style="border:none;overflow:hidden;max-width:100%;" scrolling="no"
+                            frameborder="0" allowfullscreen="true"
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -251,7 +256,7 @@
                         <img src="images/ava-2.jpg" alt="Howard Chavez" width="100" height="100">
                         <div class="author-info">
                             <h5>Howard Chavez</h5>
-                            <p>Entrepreneur</p>
+                            <p>Happy Customer</p>
                         </div>
                     </div>
                 </div>
@@ -265,7 +270,7 @@
                         <img src="images/ava-1.jpg" alt="Lucas Elliot" width="100" height="100">
                         <div class="author-info">
                             <h5>Lucas Elliot</h5>
-                            <p>Designer</p>
+                            <p>Happy Customer</p>
                         </div>
                     </div>
                 </div>

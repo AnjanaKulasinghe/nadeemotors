@@ -91,24 +91,45 @@ h6 {
 .btn-primary {
     background-color: var(--primary-color);
     color: #fff;
+    box-shadow: 6px 6px 0px 0px #FFDE00;
+    border: white solid 2px;
 }
 
 .btn-primary:hover {
-    background-color: #1e2d75;
+    background-color: white;
+    color: var(--primary-color);
+    border: var(--primary-color) solid 2px;
 }
 
 .btn-secondary {
     background-color: var(--secondary-color);
     color: var(--text-dark);
+    box-shadow: 6px 6px 0px 0px var(--primary-color);
 }
 
 .btn-secondary:hover {
-    background-color: #e6c700;
+    background-color: white;
+    color: var(--primary-color);
+    border: var(--secondary-color) solid 2px;
 }
 
 .btn-small {
     padding: 8px 20px;
     font-size: 14px;
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 6px 6px 0px 0px #FFDE00;
+    border: white solid 2px;
+}
+
+
+
+.btn-small:hover {
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: white;
+    color: var(--primary-color);
+    border: var(--primary-color) solid 2px;
 }
 
 .btn-text {
@@ -711,7 +732,7 @@ h6 {
     .hero-image {
         display: none;
     }
-    
+
     .hero .btn {
         margin-bottom: 20px;
     }
@@ -757,7 +778,7 @@ h6 {
     .hero h1 {
         font-size: 28px;
     }
-    
+
     .hero .btn {
         margin-bottom: 20px;
     }
@@ -773,7 +794,7 @@ h6 {
     .cta {
         padding: 50px 0;
     }
-    
+
     .form-col .fb-container iframe {
         height: 500px;
     }

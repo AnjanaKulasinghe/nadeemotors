@@ -370,6 +370,13 @@ h6 {
     gap: 30px;
 }
 
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: stretch;
+}
+
 .action-card {
     background: var(--bg-white);
     padding: 30px;
@@ -840,6 +847,10 @@ h6 {
     }
 
     .action-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-grid {
         grid-template-columns: 1fr;
     }
 }

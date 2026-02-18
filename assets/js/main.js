@@ -2,27 +2,42 @@
 document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
+    const mobileOverlay = document.querySelector('.mobile-overlay');
 
     if (mobileMenuToggle && mainNav) {
         mobileMenuToggle.addEventListener('click', function () {
             mainNav.classList.toggle('active');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            mobileMenuToggle.classList.toggle('active');
+            if (mobileOverlay) {
+                mobileOverlay.classList.toggle('active');
+            }
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking overlay
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', function () {
+                mainNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close mobile menu when clicking a nav link
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                mainNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                if (mobileOverlay) {
+                    mobileOverlay.classList.remove('active');
+                }
+                document.body.style.overflow = '';
+            });
         });
     }
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function (event) {
-        if (mainNav && mainNav.classList.contains('active')) {
-            if (!event.target.closest('.main-nav') && !event.target.closest('.mobile-menu-toggle')) {
-                mainNav.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-    });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
